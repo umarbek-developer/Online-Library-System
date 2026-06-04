@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_filters',
     'drf_spectacular',
+    'drf_spectacular_sidecar', # Provides local CSS/JS files
 
     # own apps
     'apps.utils',
@@ -116,6 +117,16 @@ REST_FRAMEWORK = {
     # 'UNAUTHENTICATED_USER': 'users.models.AnonymousUser',
 }
 
+# Configure metadata and sidecar UI layout
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Online Library System Project API',
+    'DESCRIPTION': 'Comprehensive API documentation for my Django application',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'SWAGGER_UI_DIST': 'SIDECAR',  # Requires drf-spectacular-sidecar
+    'SWAGGER_UI_FAVICON_HREF': 'SIDECAR',
+    'REDOC_DIST': 'SIDECAR',
+}
 
 
 LANGUAGE_CODE = 'en-us'

@@ -36,17 +36,17 @@ class BookUpdateApiView(UpdateAPIView):
 
     def partial_update(self, request, pk, *args, **kwargs):
         try:
-            wishlist = self.queryset.get(id=pk, published_user=request.user)
-            ser = self.serializer_class(wishlist, data=request.data, partial=True)
+            book = self.queryset.get(id=pk, published_user=request.user)
+            ser = self.serializer_class(book, data=request.data, partial=True)
             if ser.is_valid(raise_exception=True):
                 ser.save()
             return Response({
-                "message": "wishlist updated successfully",
+                "message": "book updated successfully",
                 "data": ser.data
             }, status=status.HTTP_200_OK)
         except Book.DoesNotExist:
             return Response({
-                "message": "wishlist not found",
+                "message": "book not found",
             }, status=status.HTTP_404_NOT_FOUND)
             
 

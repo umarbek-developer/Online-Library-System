@@ -43,7 +43,13 @@ class Borrow(models.Model):
 
     def __str__(self):
         return f"{self.user.get_full_name()} | {self.book.name}"
-    
+
+    def save(self, *args, **kwargs):
+        if not self.pk:
+            self.book.status = BookStatus.BORROWED
+            self.book.save()
+        super().save(*args, **kwargs)
+
 
 class Wishlist(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
